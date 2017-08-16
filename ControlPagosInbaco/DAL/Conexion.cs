@@ -9,10 +9,11 @@ namespace DAL
 
         public bool AbrirConexion()
         {
+            //string strConexion = "server=127.0.0.1;User Id=root;password=;database=mydb";
             string strConexion = "server=localhost;" +
                                  "user id=root;" +
-                                 "password=1234;" +
-                                 "database=inbaco;" +
+                                 "Pwd=;" +
+                                 "database=mydb;" +
                                  "port=3306;" +
                                  "Pooling=false;Connection Lifetime=1;" +
                                  "Max Pool Size=1;respect binary flags=false";
