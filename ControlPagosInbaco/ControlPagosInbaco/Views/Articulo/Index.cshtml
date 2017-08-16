@@ -1,0 +1,25 @@
+﻿@using ControlPagosInbaco.Models
+@model IEnumerable<Articulo>
+@{
+    ViewBag.Title = "Listado de Artículos";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<body>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Id artículo</th>
+        </tr>
+        @foreach (Articulo articulo in Model)
+        {
+            <tr>
+                <td>@articulo.IdArticulo</td>
+            </tr>
+        }
+    </table>
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

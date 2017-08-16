@@ -12,7 +12,7 @@ namespace MyApplication.DAL
             //Database.SetInitializer<IMBContext>(new MyDbInitializer()); (we do not want to seed) so just do not initialize database
         }
 
-        public DbSet<ABCModelos.Articulo> Articulos { get; set; }
+        public DbSet<Articulo> Articulos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

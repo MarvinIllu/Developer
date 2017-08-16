@@ -1,0 +1,19 @@
+﻿@model ControlPagosInbaco.Models.Articulo
+
+@{
+    ViewBag.Title = "Obtener";
+}
+
+<h2>Obtener</h2>
+
+<div>
+    <h4>Articulo</h4>
+    <hr />
+    <h3>@Model.IdArticulo</h3>
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdArticulo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
