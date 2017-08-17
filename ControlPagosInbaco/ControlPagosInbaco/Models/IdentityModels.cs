@@ -20,9 +20,25 @@ namespace ControlPagosInbaco.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        static ApplicationDbContext()
         {
+            //Database.SetInitializer(new MySqlInitializer());
+        }
+
+        public ApplicationDbContext()
+            : base("MyDbContextConnectionString", throwIfV1Schema: false)
+        {
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
+
+            modelBuilder.Entity<ApplicationUser>().ToTable("users");
+            modelBuilder.Entity<IdentityRole>().ToTable("roles");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("userroles");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("userclaims");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("userlogins");
         }
 
         public static ApplicationDbContext Create()
