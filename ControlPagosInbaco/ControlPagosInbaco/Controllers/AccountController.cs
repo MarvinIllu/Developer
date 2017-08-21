@@ -58,7 +58,14 @@ namespace ControlPagosInbaco.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("AccesoInvalido","UserRoles");
+            }
+            else {
+                return View();
+            }       
         }
 
         //

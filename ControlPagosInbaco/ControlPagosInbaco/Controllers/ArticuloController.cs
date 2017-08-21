@@ -14,6 +14,7 @@ using MyApplication.DAL;
 
 namespace ControlPagosInbaco.Controllers
 {
+    [Authorize(Roles = "MantArticulo")]
     public class ArticuloController : Controller
     {
         public static int maxNumberDefault = 100;
@@ -22,6 +23,7 @@ namespace ControlPagosInbaco.Controllers
         /// Listado de Artículos
         /// </summary>
         /// <returns></returns>
+        
         public ActionResult Index()
         {
             List<Articulo> artlist = ListadoArticulos();
