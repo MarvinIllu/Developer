@@ -13,6 +13,8 @@ namespace MyApplication.DAL
         }
 
         public DbSet<Articulo> Articulos { get; set; }
+        public DbSet<Grado> Grados { get; set; }
+        public DbSet<Establecimiento> Establecimientos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

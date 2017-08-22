@@ -206,17 +206,20 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticuloController.cs" />
+    <Compile Include="Controllers\GradoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DAL\IMBContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Articulo.cs" />
+    <Compile Include="Models\Establecimiento.cs" />
+    <Compile Include="Models\Grado.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="MySqlConfiguration.cs" />
@@ -285,7 +288,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Articulo\Index.cshtml" />
     <Content Include="Views\Articulo\Obtener.cshtml" />
-    <Content Include="Views\UserRoles\AccesoInvalido.cshtml" />
+    <Content Include="Views\Grado\Index.cshtml" />
+    <Content Include="Views\Grado\create.cshtml" />
+    <Content Include="Views\Grado\delete.cshtml" />
+    <Content Include="Views\Grado\Details.cshtml" />
+    <Content Include="Views\Grado\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

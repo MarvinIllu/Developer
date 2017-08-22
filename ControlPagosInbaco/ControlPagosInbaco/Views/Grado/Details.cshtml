@@ -1,0 +1,49 @@
+﻿@model ControlPagosInbaco.Models.Grado
+
+@{
+    ViewBag.Title = "Detalles de Grado";
+}
+
+<h2>Detalles de grado</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Establecimiento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Establecimiento.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdGrado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdGrado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdGrado }) |
+    @Html.ActionLink("Regresar al Listado de Cursos", "Index")
+</p>
