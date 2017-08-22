@@ -12,6 +12,7 @@ using System.Data.Entity.Infrastructure;
 namespace ControlPagosInbaco.Controllers
 {
     //[Authorize(Roles = "Admin")]
+    [Authorize]
     public class GradoController : Controller
     {
         private IMBContext dbCtx = new IMBContext();
