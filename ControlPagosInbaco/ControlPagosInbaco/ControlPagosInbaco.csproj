@@ -209,6 +209,7 @@
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticuloController.cs" />
+    <Compile Include="Controllers\EstablecimientoController.cs" />
     <Compile Include="Controllers\GradoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -241,6 +242,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\MaxDeployProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -293,6 +295,11 @@
     <Content Include="Views\Grado\delete.cshtml" />
     <Content Include="Views\Grado\Details.cshtml" />
     <Content Include="Views\Grado\Edit.cshtml" />
+    <Content Include="Views\Establecimiento\Create.cshtml" />
+    <Content Include="Views\Establecimiento\Delete.cshtml" />
+    <Content Include="Views\Establecimiento\Details.cshtml" />
+    <Content Include="Views\Establecimiento\Edit.cshtml" />
+    <Content Include="Views\Establecimiento\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
