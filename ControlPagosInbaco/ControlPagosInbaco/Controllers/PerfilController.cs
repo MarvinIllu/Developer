@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ControlPagosInbaco.Models;
 using MyApplication.DAL;
 using Microsoft.AspNet.Identity;
+using ControlPagosInbaco.GlobalUtilities;
 
 namespace ControlPagosInbaco.Controllers
 {
@@ -54,8 +55,7 @@ namespace ControlPagosInbaco.Controllers
         {
             if (ModelState.IsValid)
             {
-                string currentUserId = User.Identity.GetUserId();
-                perfil.IdUsuario = currentUserId;
+                perfil.IdUsuario = GlobalFunctions.currentUserId(this);
                 db.Perfiles.Add(perfil);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,9 +88,10 @@ namespace ControlPagosInbaco.Controllers
         {
             if (ModelState.IsValid)
             {
-                string currentUserId = User.Identity.GetUserId();
-                perfil.IdUsuario = currentUserId;  
-                db.Entry(perfil).State = EntityState.Modified;
+                perfil.IdUsuario = GlobalFunctions.currentUserId(this);
+                perfil.FechaModificacion = GlobalFunctions.currentDateTime();
+                var entry = db.Entry(perfil).State = EntityState.Modified;
+                db.Entry(perfil).Property(x => x.FechaCreacion).IsModified = false; //fecha creacion never should be updated
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -87,7 +87,6 @@ namespace ControlPagosInbaco.Controllers
                 if (ModelState.IsValid)
                 {
                     grado.IdUsuario = GlobalFunctions.currentUserId(this);
-                    grado.FechaCreacion = GlobalFunctions.currentDateTime();
                     db.Grados.Add(grado);
                     db.SaveChanges();
                     return RedirectToAction("Index");

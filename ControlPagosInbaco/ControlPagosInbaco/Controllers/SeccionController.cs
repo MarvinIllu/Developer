@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ControlPagosInbaco.Models;
 using MyApplication.DAL;
 using Microsoft.AspNet.Identity;
+using ControlPagosInbaco.GlobalUtilities;
 
 namespace ControlPagosInbaco.Controllers
 {
@@ -56,10 +57,7 @@ namespace ControlPagosInbaco.Controllers
         {
             if (ModelState.IsValid)
             {
-                string currentUserId = User.Identity.GetUserId();
-                seccion.IdUsuario = currentUserId;
-                DateTime currentDatetime = DateTime.Now;
-                seccion.FechaCreacion = currentDatetime.ToString("yyyy-MM-dd HH:mm");
+                seccion.IdUsuario = GlobalFunctions.currentUserId(this);
                 db.Secciones.Add(seccion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -94,11 +92,11 @@ namespace ControlPagosInbaco.Controllers
         {
             if (ModelState.IsValid)
             {
-                string currentUserId = User.Identity.GetUserId();
-                DateTime currentDatetime = DateTime.Now;
-                seccion.FechaModificacion = currentDatetime.ToString("yyyy-MM-dd HH:mm");
-                seccion.IdUsuario = currentUserId;
-                db.Entry(seccion).State = EntityState.Modified;
+
+                seccion.IdUsuario = GlobalFunctions.currentUserId(this);
+                seccion.FechaModificacion = GlobalFunctions.currentDateTime();
+                var entry = db.Entry(seccion).State = EntityState.Modified;
+                db.Entry(seccion).Property(x => x.FechaCreacion).IsModified = false; //fecha creacion never should be updated
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
