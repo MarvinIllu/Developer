@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlPagosInbaco", "ControlPagosInbaco\ControlPagosInbaco.csproj", "{B5088B92-3C39-47BC-BC7B-D1FA854EBE66}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{214A9D1A-9C5A-405C-A48E-4FE270623268}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{B5088B92-3C39-47BC-BC7B-D1FA854EBE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5088B92-3C39-47BC-BC7B-D1FA854EBE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5088B92-3C39-47BC-BC7B-D1FA854EBE66}.Release|Any CPU.Build.0 = Release|Any CPU
-		{214A9D1A-9C5A-405C-A48E-4FE270623268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{214A9D1A-9C5A-405C-A48E-4FE270623268}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{214A9D1A-9C5A-405C-A48E-4FE270623268}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{214A9D1A-9C5A-405C-A48E-4FE270623268}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
