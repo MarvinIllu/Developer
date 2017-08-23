@@ -1,0 +1,42 @@
+﻿@model ControlPagosInbaco.Models.Seccion
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Seccion</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Grado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grado.Descripcion)
+        </dd>
+
+        <dt>
+          Secciòn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdSeccion }) |
+    @Html.ActionLink("Regresar a Listado de Secciones", "Index")
+</p>

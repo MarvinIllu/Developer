@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ControlPagosInbaco.Models.Seccion>
+
+@{
+    ViewBag.Title = "Listado de Secciones";
+}
+
+<h2>Lisatdo de Secciones</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Secciòn
+        </th>
+        <th>
+          Grado
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grado.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdSeccion }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.IdSeccion }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdSeccion })
+        </td>
+    </tr>
+}
+
+</table>
