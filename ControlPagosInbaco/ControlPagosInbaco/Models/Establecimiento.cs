@@ -17,7 +17,7 @@ namespace ControlPagosInbaco.Models
 
         [Required]
         [Display(Name = "Estado")]
-        public int Estado { get; set; }
+        public bool Estado { get; set; }
 
         [Display(Name = "Fecha de creación")]
         public string FechaCreacion { get; set; }
@@ -26,7 +26,7 @@ namespace ControlPagosInbaco.Models
         public string FechaModificacion { get; set; }
 
         [Display(Name = "Id Usuario")]
-        public long IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
 
         [Required]
         [Display(Name = "Nombre de Establecimiento")]

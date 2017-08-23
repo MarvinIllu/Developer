@@ -8,6 +8,8 @@ using System;
 using ControlPagosInbaco.Constants;
 using System.Net;
 using System.Data.Entity.Infrastructure;
+using Microsoft.AspNet.Identity;
+using ControlPagosInbaco.GlobalUtilities;
 
 namespace ControlPagosInbaco.Controllers
 {
@@ -15,7 +17,7 @@ namespace ControlPagosInbaco.Controllers
     [Authorize]
     public class GradoController : Controller
     {
-        private IMBContext dbCtx = new IMBContext();
+        private IMBContext db = new IMBContext();
 
         /// <summary>
         /// Listado de Grados
@@ -23,19 +25,19 @@ namespace ControlPagosInbaco.Controllers
         /// <returns></returns>
         public ActionResult Index(int? selectedEstablecimiento)
         {
-            /*var establecimientos = dbCtx.Establecimientos.OrderBy(q => q.Descripcion).ToList();
+            /*var establecimientos = db.Establecimientos.OrderBy(q => q.Descripcion).ToList();
             ViewBag.SelectedEstablecimiento = new SelectList(establecimientos, 
                 "IdEstablecimiento", "Descripcion", selectedEstablecimiento);
             int establecimientoId = selectedEstablecimiento.GetValueOrDefault();
 
-            IQueryable<Grado> grados = dbCtx.Grados
+            IQueryable<Grado> grados = db.Grados
                 .Where(c => !selectedEstablecimiento.HasValue || c.IdEstablecimiento == establecimientoId)
                 .OrderBy(d => d.IdGrado)
                 .Include(d => d.Establecimiento);
             var sql = grados.ToString();
             return View(grados.ToList());*/
 
-            List<Grado> gradoList = dbCtx.Grados.Take(GlobalConstants.maxNumberDefault).ToList();
+            List<Grado> gradoList = db.Grados.Take(GlobalConstants.maxNumberDefault).ToList();
             //return Json(gradoList, JsonRequestBehavior.AllowGet); //sample for JSON
             return View(gradoList);
         }
@@ -52,7 +54,7 @@ namespace ControlPagosInbaco.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Grado tmpGrado = dbCtx.Grados.Find(id);
+            Grado tmpGrado = db.Grados.Find(id);
             if (tmpGrado == null)
             {
                 return HttpNotFound();
@@ -84,8 +86,10 @@ namespace ControlPagosInbaco.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    dbCtx.Grados.Add(grado);
-                    dbCtx.SaveChanges();
+                    grado.IdUsuario = GlobalFunctions.currentUserId(this);
+                    grado.FechaCreacion = GlobalFunctions.currentDateTime();
+                    db.Grados.Add(grado);
+                    db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
@@ -109,7 +113,7 @@ namespace ControlPagosInbaco.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Grado grado = dbCtx.Grados.Find(id);
+            Grado grado = db.Grados.Find(id);
             if (grado == null)
             {
                 return HttpNotFound();
@@ -132,14 +136,17 @@ namespace ControlPagosInbaco.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var courseToUpdate = dbCtx.Grados.Find(id);
-            if (TryUpdateModel(courseToUpdate, "",
+            var gradeToupdate = db.Grados.Find(id);
+            if (TryUpdateModel(gradeToupdate, "",
                new string[] { "Descripcion", "estado","IdEstablecimiento"}))
             {
                 try
                 {
-                    dbCtx.SaveChanges();
-
+                    gradeToupdate.IdUsuario = GlobalFunctions.currentUserId(this);
+                    gradeToupdate.FechaModificacion = GlobalFunctions.currentDateTime();
+                    db.Entry(gradeToupdate).State = EntityState.Modified;
+                    db.Entry(gradeToupdate).Property(x => x.FechaCreacion).IsModified = false; //fecha creacion never should be updated
+                    db.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -148,8 +155,8 @@ namespace ControlPagosInbaco.Controllers
                     ModelState.AddModelError("", "No se pudieron actualizar los cambios");
                 }
             }
-            PopulateEstablecimientoDropDownList(courseToUpdate.IdEstablecimiento);
-            return View(courseToUpdate);
+            PopulateEstablecimientoDropDownList(gradeToupdate.IdEstablecimiento);
+            return View(gradeToupdate);
         }
 
         /// <summary>
@@ -163,7 +170,7 @@ namespace ControlPagosInbaco.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Grado grado = dbCtx.Grados.Find(id);
+            Grado grado = db.Grados.Find(id);
             if (grado == null)
             {
                 return HttpNotFound();
@@ -176,9 +183,9 @@ namespace ControlPagosInbaco.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Grado grado = dbCtx.Grados.Find(id);
-            dbCtx.Grados.Remove(grado);
-            dbCtx.SaveChanges();
+            Grado grado = db.Grados.Find(id);
+            db.Grados.Remove(grado);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -189,7 +196,7 @@ namespace ControlPagosInbaco.Controllers
         /// <param name="selectedDepartment"></param>
         private void PopulateEstablecimientoDropDownList(object PopulateEstablecimientoDropDownList = null)
         {
-            var departmentsQuery = from d in dbCtx.Establecimientos
+            var departmentsQuery = from d in db.Establecimientos
                                    orderby d.Descripcion
                                    select d;
             ViewBag.IdEstablecimiento = new SelectList(departmentsQuery, "IdEstablecimiento", "Descripcion",
@@ -200,7 +207,7 @@ namespace ControlPagosInbaco.Controllers
         {
             if (disposing)
             {
-                dbCtx.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

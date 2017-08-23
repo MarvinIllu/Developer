@@ -220,6 +220,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DAL\IMBContext.cs" />
+    <Compile Include="GlobalUtilities\GlobalFunctions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\CicloEscolar.cs" />

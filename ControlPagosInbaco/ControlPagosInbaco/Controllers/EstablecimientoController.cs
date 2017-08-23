@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using ControlPagosInbaco.Models;
 using MyApplication.DAL;
 using ControlPagosInbaco.Constants;
+using Microsoft.AspNet.Identity;
+using ControlPagosInbaco.GlobalUtilities;
 
 namespace ControlPagosInbaco.Controllers
 {
@@ -49,10 +51,12 @@ namespace ControlPagosInbaco.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Descripcion,Estado,FechaCreacion,FechaModificacion,IdUsuario,Nombre,Logo")] Establecimiento establecimiento)
+        public ActionResult Create([Bind(Include = "Descripcion,Estado,Nombre,Logo")] Establecimiento establecimiento)
         {
             if (ModelState.IsValid)
             {
+                establecimiento.IdUsuario = GlobalFunctions.currentUserId(this);
+                establecimiento.FechaCreacion = GlobalFunctions.currentDateTime();
                 db.Establecimientos.Add(establecimiento);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -81,11 +85,14 @@ namespace ControlPagosInbaco.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdEstablecimiento,Descripcion,Estado,FechaCreacion,FechaModificacion,IdUsuario,Nombre,Logo")] Establecimiento establecimiento)
+        public ActionResult Edit([Bind(Include = "IdEstablecimiento,Descripcion,Estado,Nombre,Logo")] Establecimiento establecimiento)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(establecimiento).State = EntityState.Modified;
+                establecimiento.IdUsuario = GlobalFunctions.currentUserId(this);
+                establecimiento.FechaModificacion = GlobalFunctions.currentDateTime();
+                var entry = db.Entry(establecimiento).State = EntityState.Modified;
+                db.Entry(establecimiento).Property(x => x.FechaCreacion).IsModified = false; //fecha creacion never should be updated
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

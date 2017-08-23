@@ -30,7 +30,7 @@ namespace ControlPagosInbaco.Models
         public string FechaModificacion { get; set; }
 
         [Display(Name = "Id Usuario")]
-        public long IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
 
         public virtual ICollection<Seccion> Secciones { get; set; }
 

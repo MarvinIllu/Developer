@@ -1,10 +1,10 @@
 ﻿@model ControlPagosInbaco.Models.Establecimiento
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle de Establecimiento";
 }
 
-<h2>Details</h2>
+<h2>Detalless</h2>
 
 <div>
     <h4>Establecimiento</h4>
@@ -19,43 +19,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaModificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaModificacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdUsuario)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
         </dd>
 
         <dt>
@@ -69,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEstablecimiento }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdEstablecimiento }) |
+    @Html.ActionLink("Regresar a Listado", "Index")
 </p>
