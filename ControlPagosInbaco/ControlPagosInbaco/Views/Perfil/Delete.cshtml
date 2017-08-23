@@ -1,4 +1,4 @@
-﻿@model ControlPagosInbaco.Models.CicloEscolar
+﻿@model ControlPagosInbaco.Models.Perfil
 
 @{
     ViewBag.Title = "Eliminar";
@@ -8,7 +8,7 @@
 
 <h3>Esta Seguro de Eliminar este Registro?</h3>
 <div>
-    <h4>Ciclo Escolar</h4>
+    <h4>Perfil</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -17,6 +17,46 @@
 
         <dd>
             @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
         </dd>
 
         <dt>

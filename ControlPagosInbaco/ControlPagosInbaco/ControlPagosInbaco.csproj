@@ -214,6 +214,7 @@
     <Compile Include="Controllers\GradoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SeccionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -226,6 +227,7 @@
     <Compile Include="Models\Grado.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Perfil.cs" />
     <Compile Include="Models\Seccion.cs" />
     <Compile Include="MySqlConfiguration.cs" />
     <Compile Include="MySqlHistoryContext.cs" />
@@ -314,6 +316,11 @@
     <Content Include="Views\CicloEscolar\Details.cshtml" />
     <Content Include="Views\CicloEscolar\Edit.cshtml" />
     <Content Include="Views\CicloEscolar\Index.cshtml" />
+    <Content Include="Views\Perfil\Create.cshtml" />
+    <Content Include="Views\Perfil\Delete.cshtml" />
+    <Content Include="Views\Perfil\Details.cshtml" />
+    <Content Include="Views\Perfil\Edit.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

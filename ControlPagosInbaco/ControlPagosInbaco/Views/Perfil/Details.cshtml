@@ -1,0 +1,98 @@
+﻿@model ControlPagosInbaco.Models.Perfil
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle Perfil</h2>
+
+<div>
+    <h4>Perfil</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdPerfil }) |
+    @Html.ActionLink("Regresar al Listado de Perfiles", "Index")
+</p>
