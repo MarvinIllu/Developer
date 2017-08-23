@@ -12,122 +12,113 @@ using Microsoft.AspNet.Identity;
 
 namespace ControlPagosInbaco.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     [Authorize]
-    public class SeccionController : Controller
+    public class CicloEscolarController : Controller
     {
         private IMBContext db = new IMBContext();
 
-        // GET: /Seccion/
+        // GET: /CicloEscolar/
         public ActionResult Index()
         {
-            var secciones = db.Secciones.Include(s => s.Grado);
-            return View(secciones.ToList());
+            return View(db.Ciclos.ToList());
         }
 
-        // GET: /Seccion/Details/5
+        // GET: /CicloEscolar/Details/5
         public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seccion seccion = db.Secciones.Find(id);
-            if (seccion == null)
+            CicloEscolar cicloescolar = db.Ciclos.Find(id);
+            if (cicloescolar == null)
             {
                 return HttpNotFound();
             }
-            return View(seccion);
+            return View(cicloescolar);
         }
 
-        // GET: /Seccion/Create
+        // GET: /CicloEscolar/Create
         public ActionResult Create()
         {
-            
-            ViewBag.IdGrado = new SelectList(db.Grados, "IdGrado", "Descripcion");
             return View();
         }
 
-        // POST: /Seccion/Create
+        // POST: /CicloEscolar/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="IdSeccion,Descripcion,Estado,IdGrado")] Seccion seccion)
+        public ActionResult Create([Bind(Include="IdCiclo,Descripcion,Estado")] CicloEscolar cicloescolar)
         {
             if (ModelState.IsValid)
             {
                 string currentUserId = User.Identity.GetUserId();
-                seccion.IdUsuario = currentUserId;
-                DateTime currentDatetime = DateTime.Now;
-                seccion.FechaCreacion = currentDatetime.ToString("yyyy-MM-dd HH:mm");
-                db.Secciones.Add(seccion);
+                cicloescolar.IdUsuario = currentUserId;                
+                db.Ciclos.Add(cicloescolar);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdGrado = new SelectList(db.Grados, "IdGrado", "Descripcion", seccion.IdGrado);
-            return View(seccion);
+            return View(cicloescolar);
         }
 
-        // GET: /Seccion/Edit/5
+        // GET: /CicloEscolar/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seccion seccion = db.Secciones.Find(id);
-            if (seccion == null)
+            CicloEscolar cicloescolar = db.Ciclos.Find(id);
+            if (cicloescolar == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdGrado = new SelectList(db.Grados, "IdGrado", "Descripcion", seccion.IdGrado);
-            return View(seccion);
+            return View(cicloescolar);
         }
 
-        // POST: /Seccion/Edit/5
+        // POST: /CicloEscolar/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="IdSeccion,Descripcion,Estado,IdGrado")] Seccion seccion)
+        public ActionResult Edit([Bind(Include="IdCiclo,Descripcion,Estado")] CicloEscolar cicloescolar)
         {
             if (ModelState.IsValid)
             {
                 string currentUserId = User.Identity.GetUserId();
-                DateTime currentDatetime = DateTime.Now;
-                seccion.FechaModificacion = currentDatetime.ToString("yyyy-MM-dd HH:mm");
-                seccion.IdUsuario = currentUserId;
-                db.Entry(seccion).State = EntityState.Modified;
+                cicloescolar.IdUsuario = currentUserId;  
+                db.Entry(cicloescolar).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdGrado = new SelectList(db.Grados, "IdGrado", "Descripcion", seccion.IdGrado);
-            return View(seccion);
+            return View(cicloescolar);
         }
 
-        // GET: /Seccion/Delete/5
+        // GET: /CicloEscolar/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seccion seccion = db.Secciones.Find(id);
-            if (seccion == null)
+            CicloEscolar cicloescolar = db.Ciclos.Find(id);
+            if (cicloescolar == null)
             {
                 return HttpNotFound();
             }
-            return View(seccion);
+            return View(cicloescolar);
         }
 
-        // POST: /Seccion/Delete/5
+        // POST: /CicloEscolar/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Seccion seccion = db.Secciones.Find(id);
-            db.Secciones.Remove(seccion);
+            CicloEscolar cicloescolar = db.Ciclos.Find(id);
+            db.Ciclos.Remove(cicloescolar);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

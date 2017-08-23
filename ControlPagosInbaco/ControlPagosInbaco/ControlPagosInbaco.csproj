@@ -209,6 +209,7 @@
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticuloController.cs" />
+    <Compile Include="Controllers\CicloEscolarController.cs" />
     <Compile Include="Controllers\EstablecimientoController.cs" />
     <Compile Include="Controllers\GradoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="DAL\IMBContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Articulo.cs" />
+    <Compile Include="Models\CicloEscolar.cs" />
     <Compile Include="Models\Establecimiento.cs" />
     <Compile Include="Models\Grado.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -307,6 +309,11 @@
     <Content Include="Views\Seccion\Details.cshtml" />
     <Content Include="Views\Seccion\Edit.cshtml" />
     <Content Include="Views\Seccion\Index.cshtml" />
+    <Content Include="Views\CicloEscolar\Create.cshtml" />
+    <Content Include="Views\CicloEscolar\Delete.cshtml" />
+    <Content Include="Views\CicloEscolar\Details.cshtml" />
+    <Content Include="Views\CicloEscolar\Edit.cshtml" />
+    <Content Include="Views\CicloEscolar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

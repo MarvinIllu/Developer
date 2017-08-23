@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ControlPagosInbaco.Models.CicloEscolar>
+
+@{
+    ViewBag.Title = "Ciclo Escolar";
+}
+
+<h2>Listado de Ciclo Escolar</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+         
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdCiclo }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.IdCiclo }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdCiclo })
+        </td>
+    </tr>
+}
+
+</table>

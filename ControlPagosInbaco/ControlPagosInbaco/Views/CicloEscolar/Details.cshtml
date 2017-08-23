@@ -1,24 +1,15 @@
-﻿@model ControlPagosInbaco.Models.Seccion
+﻿@model ControlPagosInbaco.Models.CicloEscolar
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Detalle";
 }
 
-<h2>Eliminar</h2>
+<h2>Detalle</h2>
 
-<h3>Esta Seguro de Eliminar este Registro?</h3>
 <div>
-    <h4>Seccion</h4>
-    <hr />
+    <h4>CicloEscolar</h4>
+	<hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Grado.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Grado.Descripcion)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
@@ -60,13 +51,8 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar a Listado de Secciones", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdCiclo }) |
+    @Html.ActionLink("Regresar al Listado de Ciclos", "Index")
+</p>

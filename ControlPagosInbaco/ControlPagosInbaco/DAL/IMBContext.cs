@@ -14,6 +14,7 @@ namespace MyApplication.DAL
 
         public DbSet<Articulo> Articulos { get; set; }
         public DbSet<Seccion> Secciones { get; set; }
+        public DbSet<CicloEscolar> Ciclos { get; set; }
 
         public DbSet<Grado> Grados { get; set; }
         public DbSet<Establecimiento> Establecimientos { get; set; }
