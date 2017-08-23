@@ -216,12 +216,15 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SeccionController.cs" />
+    <Compile Include="Controllers\TipoUsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DAL\IMBContext.cs" />
     <Compile Include="GlobalUtilities\GlobalFunctions.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\TipoUsuario.cs" />
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\CicloEscolar.cs" />
     <Compile Include="Models\Establecimiento.cs" />
@@ -322,6 +325,11 @@
     <Content Include="Views\Perfil\Details.cshtml" />
     <Content Include="Views\Perfil\Edit.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\TipoUsuario\Create.cshtml" />
+    <Content Include="Views\TipoUsuario\Delete.cshtml" />
+    <Content Include="Views\TipoUsuario\Details.cshtml" />
+    <Content Include="Views\TipoUsuario\Edit.cshtml" />
+    <Content Include="Views\TipoUsuario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

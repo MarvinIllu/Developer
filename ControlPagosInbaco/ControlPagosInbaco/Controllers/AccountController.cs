@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ControlPagosInbaco.Models;
+using MyApplication.DAL;
 
 namespace ControlPagosInbaco.Controllers
 {
@@ -17,12 +18,13 @@ namespace ControlPagosInbaco.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IMBContext db = new IMBContext();
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +36,9 @@ namespace ControlPagosInbaco.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -61,11 +63,11 @@ namespace ControlPagosInbaco.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("AccesoInvalido","UserRoles");
+                return RedirectToAction("AccesoInvalido", "UserRoles");
             }
             else {
                 return View();
-            }       
+            }
         }
 
         //
@@ -127,7 +129,7 @@ namespace ControlPagosInbaco.Controllers
             // Si un usuario introduce códigos incorrectos durante un intervalo especificado de tiempo, la cuenta del usuario 
             // se bloqueará durante un período de tiempo especificado. 
             // Puede configurar el bloqueo de la cuenta en IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -143,27 +145,28 @@ namespace ControlPagosInbaco.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        //[AllowAnonymous] only registered users can add more
         public ActionResult Register()
         {
+            PopulateTipoUsuarioDropDownList();
             return View();
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,IdTipoUsuario = model.IdTipoUsuario };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -177,6 +180,19 @@ namespace ControlPagosInbaco.Controllers
 
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
+        }
+
+        /// <summary>
+        /// Populate Tipo Usuario List
+        /// </summary>
+        /// <param name="selectedDepartment"></param>
+        private void PopulateTipoUsuarioDropDownList(object PopulatetTipoUsuarioDropDownList = null)
+        {
+            var departmentsQuery = from d in db.TiposUsuario
+                                   orderby d.Descripcion
+                                   select d;
+            ViewBag.IdTipoUsuario = new SelectList(departmentsQuery, "IdTipoUsuario", "Descripcion",
+                PopulatetTipoUsuarioDropDownList);
         }
 
         //
@@ -424,6 +440,12 @@ namespace ControlPagosInbaco.Controllers
                 {
                     _signInManager.Dispose();
                     _signInManager = null;
+                }
+
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
                 }
             }
 

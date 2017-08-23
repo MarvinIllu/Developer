@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ControlPagosInbaco.Models.TipoUsuario>
+
+@{
+    ViewBag.Title = "Tipos de Usuarios";
+}
+
+<h2>Tipos de Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdTipoUsuario }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdTipoUsuario }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdTipoUsuario })
+        </td>
+    </tr>
+}
+
+</table>

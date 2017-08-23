@@ -79,6 +79,9 @@ namespace ControlPagosInbaco.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Id Tipo Usuario")]
+        public string IdTipoUsuario { get; set; }
     }
 
     public class ResetPasswordViewModel
