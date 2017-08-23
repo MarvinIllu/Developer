@@ -222,6 +222,10 @@
     </Compile>
     <Compile Include="DAL\IMBContext.cs" />
     <Compile Include="GlobalUtilities\GlobalFunctions.cs" />
+    <Compile Include="Migrations\201708232002390_initial_database.cs" />
+    <Compile Include="Migrations\201708232002390_initial_database.Designer.cs">
+      <DependentUpon>201708232002390_initial_database.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\TipoUsuario.cs" />
@@ -348,6 +352,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708232002390_initial_database.resx">
+      <DependentUpon>201708232002390_initial_database.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

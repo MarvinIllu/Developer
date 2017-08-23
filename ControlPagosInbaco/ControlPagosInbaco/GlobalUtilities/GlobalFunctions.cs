@@ -33,7 +33,7 @@ namespace ControlPagosInbaco.GlobalUtilities
                 DateTime currentDatetime = DateTime.Now;
                 retCurrrDateTime = currentDatetime.ToString("yyyy-MM-dd HH:mm");
             }
-            catch (Exception ignored)
+            catch
             {
                 retCurrrDateTime = DateTime.MinValue.ToString();
             }

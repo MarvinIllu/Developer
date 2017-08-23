@@ -1,4 +1,5 @@
-﻿using ControlPagosInbaco.Models;
+﻿using ControlPagosInbaco;
+using ControlPagosInbaco.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -9,7 +10,7 @@ namespace MyApplication.DAL
 
         public IMBContext() : base("MyDbContextConnectionString")
         {
-            //Database.SetInitializer<IMBContext>(new MyDbInitializer()); (we do not want to seed) so just do not initialize database
+            Database.SetInitializer<IMBContext>(new MySqlInitializer()); //(we do not want to seed) so just do not initialize database
         }
 
         public DbSet<Articulo> Articulos { get; set; }
