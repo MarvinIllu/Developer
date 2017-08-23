@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ControlPagosInbaco.Controllers
 {
+    [Authorize]
     public class SeccionController : Controller
     {
         private IMBContext db = new IMBContext();
