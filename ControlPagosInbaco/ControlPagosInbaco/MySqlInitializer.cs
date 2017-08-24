@@ -1,32 +1,37 @@
-﻿using MyApplication.DAL;
+﻿using ControlPagosInbaco.Models;
+using MyApplication.DAL;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using ControlPagosInbaco.GlobalUtilities;
 
 namespace ControlPagosInbaco
 {
-    public class MySqlInitializer : IDatabaseInitializer<IMBContext>
+    public class MySqlInitializer : CreateDatabaseIfNotExists<IMBContext>
     {
-        public void InitializeDatabase(IMBContext context)
+        protected override void Seed(IMBContext context)
         {
-            if (!context.Database.Exists())
+            //we must create tipo usuario records.
+            TMPTipoUsuarioList tipoUsuarioList =  DefaultSeeds.getTipoUsuariosConfig();
+            foreach(TipoUsuario tipoUsuario in tipoUsuarioList.types)
             {
-                // if database did not exist before - create it
-                context.Database.Create();
+                context.TiposUsuario.Add(tipoUsuario);
+                context.SaveChanges();
             }
-            else
-            {
-                // query to check if MigrationHistory table is present in the database 
-                var migrationHistoryTableExists = ((IObjectContextAdapter)context).ObjectContext.ExecuteStoreQuery<int>(
-                string.Format("SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '__MigrationHistory'"));
 
-                // if MigrationHistory table is not there (which is the case first time we run) - create it
-                if (migrationHistoryTableExists.FirstOrDefault() == 0)
-                {
-                    context.Database.Delete();
-                    context.Database.Create();
-                }
+
+            TMPUser defaultUser = DefaultSeeds.getDefaultUserToCreate();
+            ///create at Least one user
+            if (!(context.Users.Any(u => u.UserName == defaultUser.Email)))
+            {
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var userToInsert = new ApplicationUser { UserName = defaultUser.Email, Email = defaultUser.Email, IdTipoUsuario = defaultUser.IdTipoUsuario };
+                userManager.Create(userToInsert, defaultUser.Password);
             }
+
+            base.Seed(context);
         }
     }
 }

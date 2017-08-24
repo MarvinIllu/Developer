@@ -6,6 +6,11 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ControlPagosInbaco.Models;
+using MyApplication.DAL;
+using ControlPagosInbaco.GlobalUtilities;
+using System.Web;
+using System.Web.Security;
+using System.Data.Entity;
 
 namespace ControlPagosInbaco
 {
@@ -14,8 +19,23 @@ namespace ControlPagosInbaco
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            int usrs;
+            try
+            {
+                usrs = Membership.GetAllUsers().Count;
+            }
+            catch
+            {
+                usrs = 0;
+            }
+
+            if (usrs == 0)
+            {
+                DefaultSeeds.getDefaultUserToCreate();
+            }
+
             // Configure el contexto de base de datos, el administrador de usuarios y el administrador de inicios de sesión para usar una única instancia por solicitud
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(IMBContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

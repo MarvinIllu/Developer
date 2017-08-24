@@ -1,0 +1,18 @@
+[
+  {
+    "IdTipoUsuario": "ESTUDIANTE",
+    "Descripcion": "Estudiante"
+  },
+  {
+    "IdTipoUsuario": "CATEDRATICO",
+    "Descripcion": "Catedrático"
+  },
+  {
+    "IdTipoUsuario": "CONFIG",
+    "Descripcion": "Configurador"
+  },
+  {
+    "IdTipoUsuario": "ADMIN",
+    "Descripcion": "Administrador"
+  }
+]

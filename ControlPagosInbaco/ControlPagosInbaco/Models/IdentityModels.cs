@@ -21,11 +21,12 @@ namespace ControlPagosInbaco.Models
         }
     }
 
+    /*
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         static ApplicationDbContext()
         {
-            //Database.SetInitializer(new MySqlInitializer());
+            Database.SetInitializer(new MySqlInitializer());
         }
 
         public ApplicationDbContext()
@@ -49,4 +50,5 @@ namespace ControlPagosInbaco.Models
             return new ApplicationDbContext();
         }
     }
+    */
 }

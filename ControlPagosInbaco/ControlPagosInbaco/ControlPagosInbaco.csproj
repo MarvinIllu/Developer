@@ -221,6 +221,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DAL\IMBContext.cs" />
+    <Compile Include="GlobalUtilities\DefaultSeeds.cs" />
     <Compile Include="GlobalUtilities\GlobalFunctions.cs" />
     <Compile Include="Migrations\201708232002390_initial_database.cs" />
     <Compile Include="Migrations\201708232002390_initial_database.Designer.cs">
@@ -256,6 +257,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="defaultusercreate.json" />
+    <Content Include="defaultusercreate.sample.json" />
+    <Content Include="typeusers.json" />
     <None Include="Properties\PublishProfiles\MaxDeployProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -334,6 +338,7 @@
     <Content Include="Views\TipoUsuario\Details.cshtml" />
     <Content Include="Views\TipoUsuario\Edit.cshtml" />
     <Content Include="Views\TipoUsuario\Index.cshtml" />
+    <Content Include="typeusers.sample.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
